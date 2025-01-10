@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import SearchHistoryPage from "./pages/SearchHistoryPage";
 import SearchPage from "./pages/SearchPage";
 import SignUpPage from "./pages/SignUpPage";
+import SubscriptionPage from "./pages/Subscription";
 import WatchPage from "./pages/WatchPage";
 import { useAuthStore } from "./store/authUser";
 
@@ -39,8 +40,13 @@ function App() {
         />
         <Route
           path="/signup"
-          element={!user ? <SignUpPage /> : <Navigate to={"/login"} />}
+          element={!user ? <SignUpPage /> : <Navigate to={"/plan"} />}
         />
+        <Route
+          path="/plan"
+          element={!user ? <SubscriptionPage /> : <Navigate to={"/"} />}
+        />
+
         <Route
           path="/watch/:id"
           element={user ? <WatchPage /> : <Navigate to={"/login"} />}
