@@ -6,11 +6,17 @@ import { useContentStore } from "../store/content";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false); // State for logout confirmation dialog
   const { user, logout } = useAuthStore();
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const { setContentType } = useContentStore();
+
+  const handleLogout = () => {
+    logout(); // Call the logout function
+    setIsLogoutDialogOpen(false); // Close the dialog after logout
+  };
 
   return (
     <header className="max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20">
@@ -53,7 +59,10 @@ const Navbar = () => {
           alt="Avatar"
           className="h-8 rounded cursor-pointer"
         />
-        <LogOut className="size-6 cursor-pointer" onClick={logout} />
+        <LogOut
+          className="size-6 cursor-pointer"
+          onClick={() => setIsLogoutDialogOpen(true)} // Open the logout confirmation dialog
+        />
         <div className="sm:hidden">
           <Menu className="size-6 cursor-pointer" onClick={toggleMobileMenu} />
         </div>
@@ -84,7 +93,36 @@ const Navbar = () => {
           </Link>
         </div>
       )}
+
+      {/* Logout Confirmation Dialog */}
+      {isLogoutDialogOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 text-center max-w-sm w-full">
+            <h2 className="text-xl font-bold mb-4 text-orange-500">
+              Confirm Logout
+            </h2>
+            <p className="text-gray-900 mb-6">
+              Are you sure you want to logout?
+            </p>
+            <div className="flex justify-center space-x-4">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                onClick={handleLogout} // Confirm logout
+              >
+                Yes, Logout
+              </button>
+              <button
+                className="bg-gray-500 px-4 py-2 rounded hover:bg-gray-600"
+                onClick={() => setIsLogoutDialogOpen(false)} // Cancel logout
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
+
 export default Navbar;
