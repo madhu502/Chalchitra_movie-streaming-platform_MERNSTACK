@@ -83,6 +83,7 @@ import SearchPage from "./pages/SearchPage";
 import SignUpPage from "./pages/SignUpPage";
 import SubscriptionPage from "./pages/Subscription";
 
+import ReviewsPage from "./pages/ReviewsPage";
 import SearchHistoryPage from "./pages/SearchHistoryPage";
 import VerifyEmail from "./pages/VerifyEmail";
 import WatchPage from "./pages/WatchPage";
@@ -136,6 +137,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
 
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
