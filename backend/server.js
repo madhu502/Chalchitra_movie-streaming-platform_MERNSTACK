@@ -6,6 +6,7 @@ import path from "path";
 import authRoutes from "./routes/authRoute.js";
 import khaltiRoutes from "./routes/khalti.js";
 import movieRoutes from "./routes/movieRoute.js";
+import reviewRoute from "./routes/reviewRoute.js";
 import searchRoutes from "./routes/searchRoute.js";
 import tvRoutes from "./routes/tvRoute.js";
 
@@ -27,6 +28,7 @@ app.use("/api/v1/khalti", khaltiRoutes);
 app.use("/api/v1/movie", protectRoute, movieRoutes);
 app.use("/api/v1/tv", protectRoute, tvRoutes);
 app.use("/api/v1/search", protectRoute, searchRoutes);
+app.use("/api/v1/review", protectRoute, reviewRoute);
 
 if (ENV_VARS.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
