@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authUser";
 
@@ -11,6 +12,7 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login({ email, password });
+    toast.success("Logged in successfully");
   };
   return (
     <div className="h-screen w-full hero-bg">
@@ -59,6 +61,19 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </div>
+            <div
+              className="text-orange-500 hover:underline"
+              style={{ marginBottom: "15px", textAlign: "right" }}
+            >
+              <a
+                href="/forgot-password"
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                Forgot Password?
+              </a>
             </div>
 
             <button

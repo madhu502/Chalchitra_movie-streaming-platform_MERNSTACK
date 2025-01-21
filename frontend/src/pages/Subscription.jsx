@@ -1,16 +1,19 @@
 import KhaltiCheckout from "khalti-checkout-web";
+import { Link } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authUser";
 
 const SubscriptionPage = () => {
   const [selectedPlan, setSelectedPlan] = useState("Standard");
+  const { logout } = useAuthStore();
   const navigate = useNavigate();
 
   const plans = [
     { name: "Basic", type: "Monthly", price: 150 },
     { name: "Standard", type: "Monthly", price: 199 },
-    { name: "Premium", type: "Annual", price: 250 },
+    { name: "Premium", type: "Monthly", price: 250 },
   ];
 
   const selectedPlanDetails = plans.find((plan) => plan.name === selectedPlan);
@@ -66,13 +69,14 @@ const SubscriptionPage = () => {
       {/* Header */}
       <div className="w-full flex justify-between items-center px-8 py-4">
         <div className="flex items-center space-x-2">
-          <img
-            src="/chalchitra-logo.png"
-            alt="Chalachitra Logo"
-            className="h-12"
-          />
+          <Link to={"/"}>
+            <img src="/chalchitra-logo.png" alt="logo" className="w-52" />
+          </Link>
         </div>
-        <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">
+        <button
+          onClick={logout}
+          className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
+        >
           Sign Out
         </button>
       </div>

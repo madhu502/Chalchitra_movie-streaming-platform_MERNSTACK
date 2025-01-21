@@ -10,6 +10,24 @@ const AuthScreen = () => {
     e.preventDefault();
     navigate("/signup?email=" + email);
   };
+  const faqs = [
+    {
+      question: "Can I watch international content?",
+      answer:
+        "Yes, our platform includes a wide range of international movies and TV shows across different genres.",
+    },
+    {
+      question: "How do I manage my watch history?",
+      answer:
+        "You can view and manage your watch history from the 'History' section in your profile. You can clear specific items or the entire history if needed.",
+    },
+    {
+      question: "How do I subscribe to premium content?",
+      answer:
+        "Create an account, choose a plan, and complete the payment securely through Khalti.",
+    },
+  ];
+
   return (
     <div className="hero-bg relative">
       {/* Navbar */}
@@ -29,9 +47,9 @@ const AuthScreen = () => {
       {/* hero section */}
       <div className="flex flex-col items-center justify-center text-center py-40 text-white max-w-6xl mx-auto">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Unlimited movies, TV shows, and more
+          Your Entertainment Universe Starts Here
         </h1>
-        <p className="text-lg mb-4">Watch anywhere. Cancel anytime.</p>
+        <p className="text-lg mb-4">Get Set, Stream!</p>
         <p className="mb-4">
           Ready to watch? Enter your email to create or restart your membership.
         </p>
@@ -65,8 +83,7 @@ const AuthScreen = () => {
               Enjoy on your TV
             </h2>
             <p className="text-lg md:text-xl">
-              Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
-              Blu-ray players, and more.
+              Watch on Smart TVs, PlayStation, Apple TV, and more.
             </p>
           </div>
           {/* right side */}
@@ -198,6 +215,23 @@ const AuthScreen = () => {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+      {/* FAQ Section */}
+      <div className="bg-black text-white py-10">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-extrabold mb-8 text-center">FAQs</h2>
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="mb-6 p-4 rounded bg-[#232323] shadow-lg"
+            >
+              <h3 className="text-xl font-bold mb-2 text-orange-500">
+                {faq.question}
+              </h3>
+              <p>{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
